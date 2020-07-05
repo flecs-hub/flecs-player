@@ -20,9 +20,13 @@ ECS_STRUCT(EcsPlayer, {
     float time_scale;
     ecs_entity_t play_pipeline;
     ecs_entity_t stop_pipeline;
-
+    
 ECS_NON_SERIALIZABLE
     ecs_snapshot_t *snapshot;
+});
+
+ECS_STRUCT(EcsTargetFps, {
+    float target_fps;
 });
 
 typedef struct FlecsPlayer {

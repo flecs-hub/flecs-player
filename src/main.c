@@ -11,7 +11,9 @@ void player_start(
 
     player->snapshot = ecs_snapshot_take(world);
     player->time_scale = 1.0;
+    
     ecs_set_time_scale(world, 1.0);
+    ecs_set_pipeline(world, player->play_pipeline);
 
     ecs_os_free(ref);
 }
@@ -30,12 +32,15 @@ void player_stop(
 
         player = (EcsPlayer*)ecs_get_ref_w_entity(world, ref, 0, 0);
         ecs_set_time_scale(world, 0);
+        ecs_reset_clock(world);
         player->time_scale = 0;
         player->state = EcsPlayerStop;
         player->prev_state = EcsPlayerStop;
     }
 
     player->snapshot = NULL;
+    ecs_set_pipeline(world, player->stop_pipeline);
+
     ecs_os_free(ref);
 }
 
@@ -96,6 +101,7 @@ void FlecsPlayerImport(
 
     ECS_META(world, EcsPlayerState);
     ECS_META(world, EcsPlayer);
+    ECS_META(world, EcsTargetFps);
 
     ECS_PIPELINE(world, StopPipeline, 
         flecs.pipeline.PreFrame, 
@@ -115,7 +121,7 @@ void FlecsPlayerImport(
         .stop_pipeline = StopPipeline
     });
 
-    ecs_set_time_scale(world, 0);
+    ecs_set_pipeline(world, StopPipeline);
 
     ecs_set_target_fps(world, 60);
 
