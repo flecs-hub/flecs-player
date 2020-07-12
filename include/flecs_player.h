@@ -21,7 +21,7 @@ ECS_STRUCT(EcsPlayer, {
     ecs_entity_t play_pipeline;
     ecs_entity_t stop_pipeline;
     
-ECS_NON_SERIALIZABLE
+ECS_PRIVATE
     ecs_snapshot_t *snapshot;
 });
 
@@ -34,8 +34,7 @@ typedef struct FlecsPlayer {
 } FlecsPlayer;
 
 void FlecsPlayerImport(
-    ecs_world_t *world,
-    int flags);
+    ecs_world_t *world);
 
 #define FlecsPlayerImportHandles(handles)\
     ECS_IMPORT_COMPONENT(handles, EcsPlayer); 
