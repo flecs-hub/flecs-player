@@ -122,7 +122,5 @@ void FlecsPlayerImport(
 
     ecs_set_pipeline(world, StopPipeline);
 
-    ecs_set_target_fps(world, 60);
-
     ECS_EXPORT_COMPONENT(EcsPlayer);
 }
