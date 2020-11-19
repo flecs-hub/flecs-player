@@ -49,7 +49,7 @@ void EcsSetPlayer(ecs_iter_t *it) {
     ecs_world_t *world = it->world;
 
     EcsPlayer *player = ecs_column(it, EcsPlayer, 1);
-    ecs_entity_t ecs_entity(EcsPlayer) = ecs_column_entity(it, 1);
+    ecs_entity_t ecs_typeid(EcsPlayer) = ecs_column_entity(it, 1);
 
     int32_t i;
     for (i = 0; i < it->count; i ++) {

@@ -34,6 +34,7 @@ typedef struct FlecsPlayer {
     ECS_DECLARE_COMPONENT(EcsPlayer);
 } FlecsPlayer;
 
+FLECS_PLAYER_API
 void FlecsPlayerImport(
     ecs_world_t *world);
 

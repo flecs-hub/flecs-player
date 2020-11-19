@@ -24,16 +24,16 @@
 /* Convenience macro for exporting symbols */
 #ifndef flecs_player_STATIC
 #if flecs_player_EXPORTS && (defined(_MSC_VER) || defined(__MINGW32__))
-  #define FLECS_PLAYER_EXPORT __declspec(dllexport)
+  #define FLECS_PLAYER_API __declspec(dllexport)
 #elif flecs_player_EXPORTS
-  #define FLECS_PLAYER_EXPORT __attribute__((__visibility__("default")))
+  #define FLECS_PLAYER_API __attribute__((__visibility__("default")))
 #elif defined _MSC_VER
-  #define FLECS_PLAYER_EXPORT __declspec(dllimport)
+  #define FLECS_PLAYER_API __declspec(dllimport)
 #else
-  #define FLECS_PLAYER_EXPORT
+  #define FLECS_PLAYER_API
 #endif
 #else
-  #define FLECS_PLAYER_EXPORT
+  #define FLECS_PLAYER_API
 #endif
 
 #endif
