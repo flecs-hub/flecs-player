@@ -113,14 +113,12 @@ void FlecsPlayerImport(
     ECS_SYSTEM(world, EcsSetPlayer, EcsOnSet, EcsPlayer);
 
     ecs_set(world, EcsWorld, EcsPlayer, {
-        .state = EcsPlayerStop,
+        .state = EcsPlayerPlay,
         .prev_state = EcsPlayerStop,
-        .time_scale = 0,
+        .time_scale = 1,
         .play_pipeline = ecs_get_pipeline(world),
         .stop_pipeline = StopPipeline
     });
-
-    ecs_set_pipeline(world, StopPipeline);
 
     ECS_EXPORT_COMPONENT(EcsPlayer);
 }
