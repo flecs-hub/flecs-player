@@ -4,6 +4,8 @@
 /* This generated file contains includes for project dependencies */
 #include "flecs-player/bake_config.h"
 
+#ifndef FLECS_LEGACY
+
 ECS_ENUM(EcsPlayerState, {
     EcsPlayerPlay,
     EcsPlayerPause,
@@ -25,6 +27,7 @@ ECS_STRUCT(EcsTargetFps, {
     float target_fps;
 });
 
+#endif
 
 #ifdef __cplusplus
 extern "C" {
