@@ -6,19 +6,22 @@
 
 #ifndef FLECS_LEGACY
 
-ECS_ENUM(EcsPlayerState, {
-    EcsPlayerPlay,
-    EcsPlayerPause,
-    EcsPlayerStop
+ECS_ENUM(EcsPlayerSnapshotMode, {
+    EcsPlayerSnapshotModeIgnore,
+    EcsPlayerSnapshotModeTake,
+    EcsPlayerSnapshotModeRestore
+});
+
+ECS_STRUCT(EcsPlayerMode, {
+    float time_scale;
+    ecs_entity_t pipeline;
+    ecs_entity_t scope;
+    EcsPlayerSnapshotMode snapshot_mode;
 });
 
 ECS_STRUCT(EcsPlayer, {
-    EcsPlayerState state;
-    EcsPlayerState prev_state;
-    float time_scale;
-    ecs_entity_t play_pipeline;
-    ecs_entity_t stop_pipeline;
-    
+    ecs_entity_t mode;
+    ecs_entity_t prev_mode;
 ECS_PRIVATE
     ecs_snapshot_t *snapshot;
 });
@@ -35,6 +38,8 @@ extern "C" {
 
 typedef struct FlecsPlayer {
     ECS_DECLARE_COMPONENT(EcsPlayer);
+    ECS_DECLARE_COMPONENT(EcsPlayerMode);
+    ECS_DECLARE_COMPONENT(EcsTargetFps);
 } FlecsPlayer;
 
 FLECS_PLAYER_API
